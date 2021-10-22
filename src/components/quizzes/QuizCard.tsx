@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 function QuizCard() {
   return (
     <React.Fragment>
@@ -12,7 +14,7 @@ function QuizCard() {
           <p className="mt-2 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolores deserunt ea doloremque natus error, rerum quas odio quaerat nam ex commodi hic, suscipit in a veritatis pariatur minus consequuntur!</p>
         </div>
         <div className="flex justify-end mt-4">
-          <a href="/" className="text-xl font-medium text-indigo-500">John Doe</a>
+          <Link to="/details" className="text-xl font-medium text-indigo-500">John Doe</Link>
         </div>
       </div>
     </React.Fragment>
