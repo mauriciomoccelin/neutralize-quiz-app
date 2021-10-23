@@ -11,7 +11,7 @@ function QuizCard() {
         </div>
         <div>
           <h2 className="text-gray-800 text-3xl font-semibold">Design Tools</h2>
-          <p className="mt-2 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolores deserunt ea doloremque natus error, rerum quas odio quaerat nam ex commodi hic, suscipit in a veritatis pariatur minus consequuntur!</p>
+          <p className="mt-2 text-justify text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolores deserunt ea doloremque natus error, rerum quas odio quaerat nam ex commodi hic, suscipit in a veritatis pariatur minus consequuntur!</p>
         </div>
         <div className="flex justify-end mt-4">
           <Link to="/details" className="text-xl font-medium text-indigo-500">John Doe</Link>

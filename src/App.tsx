@@ -8,7 +8,7 @@ import Home from "./views/Home";
 import Details from "./views/Details";
 import NotFound from "./views/NotFound";
 
-function App() {
+function App() { 
   return (
     <React.Fragment>
       <Router>
