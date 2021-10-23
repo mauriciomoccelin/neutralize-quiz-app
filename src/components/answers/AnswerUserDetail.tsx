@@ -7,7 +7,7 @@ function AnswerUserDetail() {
       <div className="pb-1 flex justify-start items-center mb-2">
         <Link to="/details/users">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
           </svg>
         </Link>
         <span className="text-base ml-2 font-bold uppercase text-gray-700">Answer By: Mauricio Moccelin</span>
