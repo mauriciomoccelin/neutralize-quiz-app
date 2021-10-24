@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { UserDto, registerService } from '../services/quiz-api'; 
 
 interface Props {
   setLoggin: React.Dispatch<React.SetStateAction<boolean>>
 };
 
 function Login(props: Props) {
+  const [user, setUser] = useState(new UserDto());
+
+  const onCreateAccountHandler = async (event: any) => {
+    event.preventDefault();
+    
+    const result = await registerService(user);
+    props.setLoggin(true);
+  }
+
+  const handleInputChange = (event: any) => {
+    const target = event?.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target?.name;
+
+    setUser({...user, ...{ [name]: value }});
+  }
+
   return (
     <React.Fragment>
       <div className="relative min-h-screen grid bg-black ">
@@ -27,28 +46,28 @@ function Login(props: Props) {
               <div className="lg:text-left text-center">
                 <div className="flex items-center justify-center ">
                   <div className="bg-black flex flex-col w-80 border border-gray-900 rounded-lg px-8 py-10">
-                    <form className="flex flex-col space-y-2">
+                    <form className="flex flex-col space-y-2" onSubmit={onCreateAccountHandler} >
                       <label className="font-bold text-lg text-white ">
                         Your Name
                       </label>
-                      <input type="text" placeholder="Account number" className="border rounded-lg py-3 px-3 mt-4 bg-black border-indigo-600 placeholder-white-500 text-white" />
+                      <input value={user.name} name="name" onChange={handleInputChange} type="text" placeholder="Account number" className="border rounded-lg py-3 px-3 mt-4 bg-black border-indigo-600 placeholder-white-500 text-white" />
                       <label className="font-bold text-lg text-white">
                         Your E-mail
                       </label>
-                      <input type="email" placeholder="email@example.com" className="border rounded-lg py-3 px-3 bg-black border-indigo-600 placeholder-white-500 text-white" />
+                      <input value={user.email} name="email" onChange={handleInputChange} type="email" placeholder="email@example.com" className="border rounded-lg py-3 px-3 bg-black border-indigo-600 placeholder-white-500 text-white" />
                       <label className="font-bold text-lg text-white">
                         Username
                       </label>
-                      <input type="text" placeholder="user.name" className="border rounded-lg py-3 px-3 bg-black border-indigo-600 placeholder-white-500 text-white" />
+                      <input value={user.username} name="username" onChange={handleInputChange} type="text" placeholder="user.name" className="border rounded-lg py-3 px-3 bg-black border-indigo-600 placeholder-white-500 text-white" />
                       <label className="font-bold text-lg text-white ">
                         Password
                       </label>
-                      <input type="password" placeholder="**********" className="border rounded-lg py-3 px-3 mt-4 bg-black border-indigo-600 placeholder-white-500 text-white" />
+                      <input value={user.password} name="password" onChange={handleInputChange} type="password" placeholder="**********" className="border rounded-lg py-3 px-3 mt-4 bg-black border-indigo-600 placeholder-white-500 text-white" />
                       <label className="font-bold text-lg text-white ">
                         Confirm Password
                       </label>
-                      <input type="password" placeholder="**********" className="border rounded-lg py-3 px-3 mt-4 bg-black border-indigo-600 placeholder-white-500 text-white" />
-                      <button onClick={() => props.setLoggin(true)} className="border border-indigo-600 bg-black text-white rounded-lg py-3 font-semibold">
+                      <input value={user.password} name="password" onChange={handleInputChange} type="password" placeholder="**********" className="border rounded-lg py-3 px-3 mt-4 bg-black border-indigo-600 placeholder-white-500 text-white" />
+                      <button className="border border-indigo-600 bg-black text-white rounded-lg py-3 font-semibold">
                         Create Account
                       </button>
                     </form>
