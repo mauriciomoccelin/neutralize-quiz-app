@@ -13,7 +13,7 @@ function Login(props: Props) {
     event.preventDefault();
     
     const result = await registerService(user);
-    props.setLoggin(true);
+    props.setLoggin(result);
   }
 
   const handleInputChange = (event: any) => {

@@ -11,7 +11,7 @@ import Details from "./views/Details";
 import NotFound from "./views/NotFound";
 
 function App() {
-  const [loggin, setLoggin] = useState(false);
+  const [loggin, setLoggin] = useState(true);
 
   if (!loggin)
   return (

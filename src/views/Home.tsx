@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import QuizCard from "../components/quizzes/QuizCard";
+import { getAllQuizService, QuizDto } from "../services/quiz-api";
+
 
 function Home() {
+  
+  const [quizzes, setQuizzes] = useState(new Array<QuizDto>())
+
+  useEffect(() => {
+    getAllQuizService().then(r => setQuizzes(r))
+  });
+
   return (
     <React.Fragment>
-      <QuizCard></QuizCard>
-      <QuizCard></QuizCard>
-      <QuizCard></QuizCard>
-      <QuizCard></QuizCard>
-      <QuizCard></QuizCard>
-      <QuizCard></QuizCard>
+      {
+        quizzes.map(q => <QuizCard></QuizCard>)
+      }
     </React.Fragment>
   )
 }
