@@ -15,7 +15,7 @@ function Home() {
   return (
     <React.Fragment>
       {
-        quizzes.map(q => <QuizCard></QuizCard>)
+        quizzes.map(q => <QuizCard key={q._id} quiz={q}></QuizCard>)
       }
     </React.Fragment>
   )

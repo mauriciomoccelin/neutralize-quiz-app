@@ -8,7 +8,7 @@ import { Redirect, Route } from "react-router-dom";
 function QuizDetail() {
   return (
     <React.Fragment>
-      <QuizCard></QuizCard>
+      {/* <QuizCard></QuizCard> */}
       <Redirect to="/details/users"></Redirect>
       <Route path="/details/users">
         <AnswerUser></AnswerUser>
