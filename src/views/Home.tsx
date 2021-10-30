@@ -9,7 +9,9 @@ function Home() {
   const [quizzes, setQuizzes] = useState(new Array<QuizDto>())
 
   useEffect(() => {
-    getAllQuizService().then(r => setQuizzes(r))
+    if (!quizzes.some(x => !!x)) {
+      getAllQuizService().then(r => setQuizzes(r))
+    }
   });
 
   return (
