@@ -28,14 +28,14 @@ function App() {
   return (
     <React.Fragment>
       <Router>
-        <div className="flex flex-col h-screen justify-between">
+        <div className="flex flex-col w-screen h-screen justify-between">
           <Tolbar></Tolbar>
           <main className="container grid justify-center mb-auto">
             <Switch>
               <Route path="/home">
                 <Home />
               </Route>
-              <Route path="/details">
+              <Route path="/details/:id">
                 <Details />
               </Route>
               <Redirect to="/home"></Redirect>

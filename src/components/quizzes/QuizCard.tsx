@@ -2,11 +2,17 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 import { QuizDto } from "../../services/quiz-api";
+
 interface QuizCardProps {
   quiz: QuizDto;
 }
 
 function QuizCard(props: QuizCardProps) {
+  if (!props.quiz || !props.quiz.quizOf)
+  {
+    return <div></div>
+  }
+
   return (
     <React.Fragment>
       <div className="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg my-20">
@@ -26,7 +32,7 @@ function QuizCard(props: QuizCardProps) {
           </p>
         </div>
         <div className="flex justify-end mt-4">
-          <Link to="/details" className="text-xl font-medium text-indigo-500">
+          <Link to={`details/${props.quiz._id}`} className="text-xl font-medium text-indigo-500">
             Answer
           </Link>
         </div>

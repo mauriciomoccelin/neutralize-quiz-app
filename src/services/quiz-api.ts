@@ -1,11 +1,10 @@
 import axios from "axios";
 
 const token = localStorage.getItem("Bearer");
-console.log(token)
 const http = axios.create({
   baseURL: "http://localhost:3000/app",
   headers: {
-    Authorization: `Bearer ${token}`
+    Authorization: `Bearer ${token}`,
   },
 });
 
@@ -82,10 +81,13 @@ export const loginService = createAsyncActionHandler<string>({
   defaultValue: "",
   onError: (defaultValue: string) => defaultValue,
   action: async (payload: LoginDto) => {
-    const response = await http.post<{access_token: string}>("/auth/login", payload);
+    const response = await http.post<{ access_token: string }>(
+      "/auth/login",
+      payload
+    );
     const { access_token } = response?.data;
 
-    return response.status === 201 ? access_token : "" 
+    return response.status === 201 ? access_token : "";
   },
 });
 
@@ -110,5 +112,19 @@ export const getAllQuizService = createAsyncActionHandler<Array<QuizDto>>({
     });
 
     return response.data as QuizDto[];
+  },
+});
+
+export const getQuizById = createAsyncActionHandler<QuizDto>({
+  defaultValue: [] as QuizDto[],
+  onError: (defaultValue: any) => defaultValue,
+  action: async (id: string) => {
+    const response = await http.get("/quizzes/get-by-id", {
+      params: {
+        id,
+      },
+    });
+
+    return response.data as QuizDto;
   },
 });

@@ -25,7 +25,7 @@ function AnswerUser() {
             </svg>
           </div>
         </Link>
-        <Link to="/details/user/asnwers">
+        <Link to="/details/:id/users/answer">
           <div className="flex border-b py-3 cursor-pointer hover:shadow-md px-2">
             <img className='w-10 h-10 object-cover rounded-lg' alt='User avatar' src='https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=200' />
             <div className="flex flex-col px-2 w-full">

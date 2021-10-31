@@ -26,7 +26,7 @@ function Login() {
             <Route path="/register">
               <RegisterForm></RegisterForm>
             </Route>
-            <Route>
+            <Route path="/login">
               <LoginForm></LoginForm>
             </Route>
           </Switch>
