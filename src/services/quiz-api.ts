@@ -1,11 +1,11 @@
 import axios from "axios";
 
+const token = localStorage.getItem("Bearer");
+console.log(token)
 const http = axios.create({
   baseURL: "http://localhost:3000/app",
   headers: {
-    Authorization:
-      "Bearer " +
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTc1YzAzMzc2MzBiOTI2ZGYzYjg1NzYiLCJyb2xlcyI6WyJVc2VyIl0sInVzZXJuYW1lIjoibWF1cmljaW9tb2NjZWxsaW5AaG90bWFpbC5jb20iLCJuYW1lIjoiTWF1cmljaW8gTW9jY2VsaW4iLCJlbWFpbCI6Im1hdXJpY2lvbW9jY2VsbGluQGhvdG1haWwuY29tIiwiaWF0IjoxNjM1NjE2OTk0LCJleHAiOjE2MzU2MjA1OTR9.4sRfshu1qf3q8UOXOLJNEJ0jcnb-jVKYrzJIxPnGbGQ",
+    Authorization: `Bearer ${token}`
   },
 });
 
@@ -61,11 +61,11 @@ export class QuizDto {
   categories!: QuizCategoryDto[];
 }
 
-export function createAsyncActionHandler({
+export function createAsyncActionHandler<R>({
   action,
   onError,
   defaultValue,
-}: IActionHandler): (...args: any) => Promise<any> {
+}: IActionHandler): (...args: any) => Promise<R> {
   return async (...args: any) => {
     try {
       const returnValue = await action(...args);
@@ -78,12 +78,14 @@ export function createAsyncActionHandler({
   };
 }
 
-export const loginService = createAsyncActionHandler({
+export const loginService = createAsyncActionHandler<string>({
   defaultValue: "",
-  onError: (defaultValue: any) => defaultValue,
+  onError: (defaultValue: string) => defaultValue,
   action: async (payload: LoginDto) => {
-    const response = await http.post("/auth/login", payload);
-    return response.data;
+    const response = await http.post<{access_token: string}>("/auth/login", payload);
+    const { access_token } = response?.data;
+
+    return response.status === 201 ? access_token : "" 
   },
 });
 
@@ -96,7 +98,7 @@ export const registerService = createAsyncActionHandler({
   },
 });
 
-export const getAllQuizService = createAsyncActionHandler({
+export const getAllQuizService = createAsyncActionHandler<Array<QuizDto>>({
   defaultValue: [] as QuizDto[],
   onError: (defaultValue: any) => defaultValue,
   action: async () => {

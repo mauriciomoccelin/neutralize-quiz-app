@@ -1,29 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 
-import { UserDto, registerService } from '../services/quiz-api'; 
+import LoginForm from "../components/users/login-form/LoginForm";
+import RegisterForm from "../components/users/register-form/RegisterForm";
 
-interface Props {
-  setLoggin: React.Dispatch<React.SetStateAction<boolean>>
-};
-
-function Login(props: Props) {
-  const [user, setUser] = useState(new UserDto());
-
-  const onCreateAccountHandler = async (event: any) => {
-    event.preventDefault();
-    
-    const result = await registerService(user);
-    props.setLoggin(result);
-  }
-
-  const handleInputChange = (event: any) => {
-    const target = event?.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target?.name;
-
-    setUser({...user, ...{ [name]: value }});
-  }
-
+function Login() {
   return (
     <React.Fragment>
       <div className="relative min-h-screen grid bg-black ">
@@ -41,41 +22,14 @@ function Login(props: Props) {
               </div>
             </div>
           </div>
-          <div className="md:flex md:items-center md:justify-left w-full sm:w-auto md:h-full xl:w-1/2 p-8  md:p-10 lg:p-14 sm:rounded-lg md:rounded-none ">
-            <div className="max-w-xl w-full space-y-12">
-              <div className="lg:text-left text-center">
-                <div className="flex items-center justify-center ">
-                  <div className="bg-black flex flex-col w-80 border border-gray-900 rounded-lg px-8 py-10">
-                    <form className="flex flex-col space-y-2" onSubmit={onCreateAccountHandler} >
-                      <label className="font-bold text-lg text-white ">
-                        Your Name
-                      </label>
-                      <input value={user.name} name="name" onChange={handleInputChange} type="text" placeholder="Account number" className="border rounded-lg py-3 px-3 mt-4 bg-black border-indigo-600 placeholder-white-500 text-white" />
-                      <label className="font-bold text-lg text-white">
-                        Your E-mail
-                      </label>
-                      <input value={user.email} name="email" onChange={handleInputChange} type="email" placeholder="email@example.com" className="border rounded-lg py-3 px-3 bg-black border-indigo-600 placeholder-white-500 text-white" />
-                      <label className="font-bold text-lg text-white">
-                        Username
-                      </label>
-                      <input value={user.username} name="username" onChange={handleInputChange} type="text" placeholder="user.name" className="border rounded-lg py-3 px-3 bg-black border-indigo-600 placeholder-white-500 text-white" />
-                      <label className="font-bold text-lg text-white ">
-                        Password
-                      </label>
-                      <input value={user.password} name="password" onChange={handleInputChange} type="password" placeholder="**********" className="border rounded-lg py-3 px-3 mt-4 bg-black border-indigo-600 placeholder-white-500 text-white" />
-                      <label className="font-bold text-lg text-white ">
-                        Confirm Password
-                      </label>
-                      <input value={user.password} name="password" onChange={handleInputChange} type="password" placeholder="**********" className="border rounded-lg py-3 px-3 mt-4 bg-black border-indigo-600 placeholder-white-500 text-white" />
-                      <button className="border border-indigo-600 bg-black text-white rounded-lg py-3 font-semibold">
-                        Create Account
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Switch>
+            <Route path="/register">
+              <RegisterForm></RegisterForm>
+            </Route>
+            <Route>
+              <LoginForm></LoginForm>
+            </Route>
+          </Switch>
         </div>
       </div>
     </React.Fragment>

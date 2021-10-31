@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 import Tolbar from "./components/Tolbar";
@@ -11,12 +11,17 @@ import Details from "./views/Details";
 import NotFound from "./views/NotFound";
 
 function App() {
-  const [loggin, setLoggin] = useState(true);
+  const loggin = !!localStorage.getItem("Bearer");
 
   if (!loggin)
   return (
     <React.Fragment>
-      <Login setLoggin={setLoggin} />
+      <Router>
+        <Route path="/">
+          <Redirect to="/login" />
+          <Login></Login>
+        </Route>
+      </Router>
     </React.Fragment>
   )
 
