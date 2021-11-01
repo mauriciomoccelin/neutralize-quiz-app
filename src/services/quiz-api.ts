@@ -41,12 +41,14 @@ export class QuizUserDto {
 }
 
 export class QuizCategoryDto {
+  _id!: string;
   active!: boolean;
   description!: string;
   questions!: QuizQuestionDto[];
 }
 
 export class QuizQuestionDto {
+  _id!: string;
   active!: boolean;
   type!: number;
   description!: string;

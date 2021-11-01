@@ -32,7 +32,7 @@ function QuizCard(props: QuizCardProps) {
           </p>
         </div>
         <div className="flex justify-end mt-4">
-          <Link to={`details/${props.quiz._id}`} className="text-xl font-medium text-indigo-500">
+          <Link to={`answer/${props.quiz._id}`} className="text-xl font-medium text-indigo-500">
             Answer
           </Link>
         </div>

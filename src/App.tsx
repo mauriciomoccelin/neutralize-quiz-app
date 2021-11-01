@@ -9,6 +9,7 @@ import Login from "./views/Login";
 import Home from "./views/Home";
 import Details from "./views/Details";
 import NotFound from "./views/NotFound";
+import Answer from "./views/Answer";
 
 function App() {
   const loggin = !!localStorage.getItem("Bearer");
@@ -30,13 +31,16 @@ function App() {
       <Router>
         <div className="flex flex-col w-screen h-screen justify-between">
           <Tolbar></Tolbar>
-          <main className="container grid justify-center mb-auto">
+          <main className="container grid justify-center mb-auto p-2">
             <Switch>
               <Route path="/home">
                 <Home />
               </Route>
               <Route path="/details/:id">
                 <Details />
+              </Route>
+              <Route path="/answer/:idQuiz">
+                <Answer />
               </Route>
               <Redirect to="/home"></Redirect>
               <Route path="*">
